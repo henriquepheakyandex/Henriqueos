@@ -26,95 +26,39 @@ Para executar os testes, execute o seguinte comando:
 python -m unittest discover tests
 ```
 
+## Gerador de Código
+
+Este projeto inclui um gerador de código para criar rapidamente novos recursos de API RESTful.
+
+### Uso
+
+Para gerar um novo recurso, execute o seguinte comando a partir do diretório raiz do projeto:
+
+```bash
+python scripts/generate_resource.py <nome_do_recurso>
+```
+
+Substitua `<nome_do_recurso>` pelo nome do seu recurso (por exemplo, `user`, `item`).
+
+O script irá automaticamente:
+1. Criar um novo arquivo de rota em `src/routes/`.
+2. Criar um novo arquivo de teste em `tests/`.
+3. Registrar o novo Blueprint em `src/app.py`.
+
 ## Endpoints da API
 
-### Obter todas as tarefas
+### Tarefas
 
--   **GET /tasks**
--   **Resposta de sucesso:**
-    ```json
-    {
-      "tasks": [
-        {
-          "id": 1,
-          "title": "Buy groceries",
-          "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
-          "done": false
-        }
-      ]
-    }
-    ```
+- **GET /tasks**: Obtém todas as tarefas.
+- **GET /tasks/<id>**: Obtém uma única tarefa.
+- **POST /tasks**: Cria uma nova tarefa.
+- **PUT /tasks/<id>**: Atualiza uma tarefa.
+- **DELETE /tasks/<id>**: Exclui uma tarefa.
 
-### Obter uma tarefa
+### Produtos
 
--   **GET /tasks/<task_id>**
--   **Resposta de sucesso:**
-    ```json
-    {
-      "task": {
-        "id": 1,
-        "title": "Buy groceries",
-        "description": "Milk, Cheese, Pizza, Fruit, Tylenol",
-        "done": false
-      }
-    }
-    ```
--   **Resposta de erro (404 Not Found):** Se a tarefa não existir.
-
-### Criar uma tarefa
-
--   **POST /tasks**
--   **Corpo da solicitação:**
-    ```json
-    {
-      "title": "New Task Title",
-      "description": "New Task Description"
-    }
-    ```
--   **Resposta de sucesso (201 Created):**
-    ```json
-    {
-      "task": {
-        "id": 3,
-        "title": "New Task Title",
-        "description": "New Task Description",
-        "done": false
-      }
-    }
-    ```
--   **Resposta de erro (400 Bad Request):** Se o título estiver ausente.
-
-### Atualizar uma tarefa
-
--   **PUT /tasks/<task_id>**
--   **Corpo da solicitação:**
-    ```json
-    {
-      "title": "Updated Title",
-      "description": "Updated Description",
-      "done": true
-    }
-    ```
--   **Resposta de sucesso:**
-    ```json
-    {
-      "task": {
-        "id": 1,
-        "title": "Updated Title",
-        "description": "Updated Description",
-        "done": true
-      }
-    }
-    ```
--   **Resposta de erro (404 Not Found):** Se a tarefa não existir.
-
-### Excluir uma tarefa
-
--   **DELETE /tasks/<task_id>**
--   **Resposta de sucesso:**
-    ```json
-    {
-      "result": true
-    }
-    ```
--   **Resposta de erro (404 Not Found):** Se a tarefa não existir.
+- **GET /products**: Obtém todos os produtos.
+- **GET /products/<id>**: Obtém um único produto.
+- **POST /products**: Cria um novo produto.
+- **PUT /products/<id>**: Atualiza um produto.
+- **DELETE /products/<id>**: Exclui um produto.
